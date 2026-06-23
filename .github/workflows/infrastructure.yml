@@ -40,4 +40,4 @@ jobs:
 
       - name: Deploy
         run: |
-          bash scripts/deploy_bicep.sh ${{ inputs.environment }} ${{ inputs.tenant }} ${{ env.RESOURCE_GROUP }}
+          bash scripts/deploy_bicep.sh ${{ inputs.environment }} ${{ inputs.tenant }} ${{ env.RESOURCE_GROUP }} ${{ secrets.ADMIN_PASSWORD }}
