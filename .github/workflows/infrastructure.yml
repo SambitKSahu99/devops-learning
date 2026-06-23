@@ -1,0 +1,43 @@
+name: Deploy Infrastruccture
+
+on:
+  workflow_dispatch: 
+    inputs:
+      environment:
+        description: Environment to deploy
+        required: true
+        default: dev
+        type: choice
+        options:
+          - dev
+          - qa
+          - stg
+      tenant:
+        description: Tenant
+        required: true
+        default: t01
+        type: string
+
+env:
+  RESOURCE_GROUP: ${{ vars.RESOURCE_GROUP }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy
+        run: |
+          bash scripts/deploy.sh ${{ inputs.environment }} ${{ inputs.tenant }} ${{ env.RESOURCE_GROUP }}
