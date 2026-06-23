@@ -1,8 +1,10 @@
 #! /bin/bash
 
-ENVIRONMENT = $1
-TENANT = $2
-RG = $3
+set -e
+
+ENVIRONMENT=$1
+TENANT=$2
+RG=$3
 
 echo "Deployement started"
 
