@@ -20,3 +20,12 @@ module vnet 'modules/vnet.bicep' = {
     addressSpace: '10.0.0.0/28'
   }
 }
+
+module subnet 'modules/subnet.bicep' = {
+  name: 'subnet-deploy'
+  params:{
+    subNetName: '${resourcePrefix}-subnet'
+    vnetName: vnet.outputs.vnetName
+    addressPrefix: '10.0.0.0/29'
+  }
+}
