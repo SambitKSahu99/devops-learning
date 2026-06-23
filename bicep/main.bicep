@@ -21,7 +21,7 @@ module vnet 'modules/vnet.bicep' = {
   }
 }
 
-module subnet 'moules/subnet.bicep' = {
+module subnet 'modules/subnet.bicep' = {
   name: 'subnet-deploy'
   params:{
     subNetName: '${resourcePrefix}-subnet'
